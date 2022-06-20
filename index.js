@@ -4,12 +4,14 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
 
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
+    makeAnimation(buttonInnerHTML);
 
   });
 }
 
 document.addEventListener("keypress", function(event) {
   makeSound(event.key);
+  makeAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -47,4 +49,12 @@ function makeSound(key) {
       alert("Wrong Input Detected !");
 
   }
+}
+
+function makeAnimation(currentKey){
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
